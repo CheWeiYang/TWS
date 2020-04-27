@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">TWS Sample</string>
+    <string name="location_auth">位置權限</string>
+    <string name="auth_message">應用程式有權獲取您的位置時才能接收耳機的狀態。</string>
+    <string name="auth_message1">在Android 6.0或以上，具有上述權限的應用才能使用低功耗藍芽技術。</string>
+    <string name="auth_commit">授予權限</string>
+    <string name="ask_location_permission">要允許「TWS Sample」存取這個裝置的位置資訊嗎?</string>
+    <string name="agree">允許</string>
+    <string name="disagree">不允許</string>
+    <string name="headphone">藍芽耳機</string>
+    <string name="headphone_status">連線狀態 : </string>
+    <string name="headphone_disconnect">未連線</string>
+    <string name="headphone_name">裝置名稱 : </string>
+    <string name="headphone_address">裝置地址 : </string>
+    <string name="headphone_power_l">耳機電量(L) : </string>
+    <string name="headphone_power_r">耳機電量(R) : </string>
+    <string name="unknown">未知</string>
+</resources>
