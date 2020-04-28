@@ -46,6 +46,8 @@ public class BleService extends Service {
     public final static String CHARACTERISTIC_READ = "CHARACTERISTIC_READ";
     public final static String CHARACTERISTIC_WRITE = "CHARACTERISTIC_WRITE";
 
+    public final static UUID UUID_BATTERY_LEVEL = UUID.fromString(BleGattAttributes.BATTERY_LEVEL);
+
     public class LocalBinder extends Binder {
         public BleService getService() {
             return BleService.this;
@@ -168,7 +170,6 @@ public class BleService extends Service {
         @Override
         public void onServicesDiscovered(BluetoothGatt gatt, int status) {
             super.onServicesDiscovered(gatt, status);
-
             if (status == BluetoothGatt.GATT_SUCCESS) {
                 Log.d(TAG, "onServicesDiscovered: 連線成功");
                 broadcastUpdate(ACTION_GATT_SERVICES_DISCOVERED);
@@ -181,6 +182,8 @@ public class BleService extends Service {
             super.onCharacteristicRead(gatt, characteristic, status);
             Log.d(TAG, "onCharacteristicRead status: " + status);
             if (status == BluetoothGatt.GATT_SUCCESS) {
+                int batteryLevel = (int) (characteristic.getValue()[0]);
+                Log.d(TAG, "Battery Level : " + batteryLevel);
                 broadcastUpdate(CHARACTERISTIC_READ, characteristic);
             }
         }
@@ -212,8 +215,23 @@ public class BleService extends Service {
     private void refreshCharacteristic() {
         List<BluetoothGattService> gattServices = getSupportedGattServices();
         if (gattServices != null) {
+            Log.d(TAG, "Services數量 : " + gattServices.size());
             // 開始做取得Services裡面的資訊
-            checkTempCharacteristics();
+            for (BluetoothGattService gattService : gattServices) {
+                Log.d(TAG, "gattService UUID " + gattService.getUuid());
+                List<BluetoothGattCharacteristic> characteristics = gattService.getCharacteristics();
+                for (int i = 0; i < characteristics.size(); i++) {
+                    BluetoothGattCharacteristic characteristic = characteristics.get(i);
+                    UUID uuid = characteristic.getUuid();
+                    //這邊先測試取得讀取電量
+                    if (uuid.equals(UUID_BATTERY_LEVEL)) {
+                        mBluetoothGatt.readCharacteristic(characteristic);
+                    }
+                }
+            }
+
+
+            //checkTempCharacteristics();
         }
     }
 

@@ -145,6 +145,8 @@ public class DeviceInfoFragment extends Fragment {
                     BleUtil.bleConnectStatus = BleUtil.BLE_CONNECTED;
                     updateConnectionState();
                     break;
+                case BleService.CHARACTERISTIC_READ:
+
                 default:
             }
         }
