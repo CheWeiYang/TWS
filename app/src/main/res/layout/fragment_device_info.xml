@@ -1,27 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/black"
+    android:background="@mipmap/black_bg"
     android:clickable="true"
-    >
+    android:orientation="vertical">
+
     <TextView
         android:id="@+id/app_version"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="right"
-        android:textColor="@android:color/white"
         android:text="App Version : "
+        android:textColor="@android:color/white"
         android:textSize="16sp" />
 
     <LinearLayout
         android:id="@+id/fragmentDevice_deviceInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:background="@android:color/black"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="10dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -34,19 +33,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Device Name"
-                android:textSize="22sp"
-                android:textColor="@android:color/white"/>
+                android:textColor="@android:color/white"
+                android:textSize="22sp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="5dp"/>
+                android:layout_height="5dp" />
+
             <TextView
                 android:id="@+id/fragmentDevice_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Mac address"
-                android:textSize="18sp"
-                android:textColor="@android:color/white"/>
+                android:textColor="@android:color/white"
+                android:textSize="18sp" />
         </LinearLayout>
 
         <ImageView
@@ -54,13 +54,41 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
-            android:src="@mipmap/ic_connect_not"/>
+            android:src="@mipmap/ic_connect_not" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@android:color/darker_gray"/>
+        android:background="@android:color/darker_gray" />
+
+    <LinearLayout
+        android:id="@+id/battery_manager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:text="Battery Level : "
+            android:textColor="@android:color/white"
+            android:textSize="22sp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/battery_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:text="None"
+            android:textColor="@android:color/white"
+            android:textSize="22sp"
+            android:layout_weight="1" />
+
+    </LinearLayout>
 
 
 </LinearLayout>

@@ -24,7 +24,6 @@ public class BleDeviceAdapter extends RecyclerView.Adapter {
     private Context mContext;
     private LayoutInflater mInflater;
     private ArrayList<BleDevice> mList;
-
     private AdapterListener adapterListener = null;
 
     public void setupAdapterListener(AdapterListener listener) {

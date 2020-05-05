@@ -1,15 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@mipmap/black_bg">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:navigationIcon="@mipmap/ic_action_edit_songlist">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@mipmap/foxconn"
+                android:contentDescription="@string/app_name" />
+
+
+    </androidx.appcompat.widget.Toolbar>
 
     <RelativeLayout
         android:id="@+id/topBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:background="@android:color/black"
+        android:layout_below="@+id/toolBar"
         android:gravity="center"
         android:minHeight="50dp">
 
@@ -23,14 +40,30 @@
 
     </RelativeLayout>
 
+    <LinearLayout
+        android:id="@+id/line1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/topBar"
+        android:background="@android:color/darker_gray"
+        android:orientation="horizontal" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/deviceRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/connect_device"
-        android:layout_below="@+id/topBar"
-        android:background="@color/colorBlack"
-        android:padding="10dp" />
+        android:layout_below="@+id/line1"
+        android:background="@mipmap/black_bg"
+        android:padding="5dp" />
+
+    <LinearLayout
+        android:id="@+id/line2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@id/connect_device"
+        android:background="@android:color/darker_gray"
+        android:orientation="horizontal" />
 
     <RelativeLayout
         android:id="@+id/connect_device"
@@ -38,15 +71,19 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@android:color/black"
-        android:minHeight="70dp">
+        >
 
         <TextView
             android:id="@+id/search_device"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="搜尋裝置"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/ripple_effect"
+            android:clickable="true"
+            android:focusable="true"
             android:gravity="center"
+            android:text="搜尋裝置"
             android:textColor="@color/colorWhite"
             android:textSize="25sp"
             android:textStyle="bold" />

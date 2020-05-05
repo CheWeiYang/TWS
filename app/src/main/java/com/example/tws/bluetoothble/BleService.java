@@ -182,9 +182,9 @@ public class BleService extends Service {
             super.onCharacteristicRead(gatt, characteristic, status);
             Log.d(TAG, "onCharacteristicRead status: " + status);
             if (status == BluetoothGatt.GATT_SUCCESS) {
-                int batteryLevel = (int) (characteristic.getValue()[0]);
-                Log.d(TAG, "Battery Level : " + batteryLevel);
-                broadcastUpdate(CHARACTERISTIC_READ, characteristic);
+                byte[] data = characteristic.getValue();
+                //broadcastUpdate(CHARACTERISTIC_READ, characteristic);
+                broadcastUpdateWithData(CHARACTERISTIC_READ, BleUtil.byteArrayToHexString(data));
             }
         }
 

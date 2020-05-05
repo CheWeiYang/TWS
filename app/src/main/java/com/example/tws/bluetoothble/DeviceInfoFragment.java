@@ -27,7 +27,7 @@ public class DeviceInfoFragment extends Fragment {
     private BleDevice mBleDevice;
     private BleServiceConnection mBleServiceConnection = null;
     private ImageView imageViewStatus;
-    private TextView textViewName, textViewMac, textViewVersion;
+    private TextView textViewName, textViewMac, textViewVersion, textBattery;
 
     public static DeviceInfoFragment newInstance(BleDevice device) {
         DeviceInfoFragment fragment = new DeviceInfoFragment();
@@ -86,6 +86,7 @@ public class DeviceInfoFragment extends Fragment {
         textViewName = view.findViewById(R.id.fragmentDevice_deviceName);
         textViewMac = view.findViewById(R.id.fragmentDevice_address);
         imageViewStatus = view.findViewById(R.id.fragmentDevice_status);
+        textBattery = view.findViewById(R.id.battery_text);
     }
 
     private void initViews() {
@@ -146,7 +147,9 @@ public class DeviceInfoFragment extends Fragment {
                     updateConnectionState();
                     break;
                 case BleService.CHARACTERISTIC_READ:
-
+                    String battery = intent.getStringExtra(BleService.CHARACTERISTIC_READ);
+                    textBattery.setText(battery + " % ");
+                    Log.d(TAG, "Battery Level : " + battery + " % ");
                 default:
             }
         }
