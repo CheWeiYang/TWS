@@ -29,6 +29,7 @@
         android:text="@string/location_auth"
         android:textSize="25sp"
         android:textStyle="bold"
+        android:textColor="@color/colorWhite"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/location" />
@@ -51,6 +52,7 @@
             android:gravity="center"
             android:singleLine="false"
             android:text="@string/auth_message"
+            android:textColor="@color/colorWhite"
             android:textSize="15sp" />
     </LinearLayout>
 
@@ -70,6 +72,7 @@
             android:gravity="center"
             android:singleLine="false"
             android:text="@string/auth_message1"
+            android:textColor="@color/colorWhite"
             android:textSize="15sp" />
     </LinearLayout>
 
@@ -79,8 +82,9 @@
         android:layout_height="32dp"
         android:layout_marginTop="16dp"
         android:gravity="center"
+        android:background="@drawable/shape_textview"
         android:text="@string/auth_commit"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorWhite"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

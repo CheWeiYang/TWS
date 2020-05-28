@@ -1,94 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/activity_main"
+    android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/black_bg">
+    android:background="@mipmap/background_black">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolBar"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:navigationIcon="@mipmap/ic_action_edit_songlist">
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:src="@mipmap/foxconn"
-                android:contentDescription="@string/app_name" />
+                android:contentDescription="@string/app_name"
+                android:src="@mipmap/foxconn" />
 
 
-    </androidx.appcompat.widget.Toolbar>
+        </androidx.appcompat.widget.Toolbar>
 
-    <RelativeLayout
-        android:id="@+id/topBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/toolBar"
-        android:gravity="center"
-        android:minHeight="50dp">
-
-        <TextView
-            android:id="@+id/search_status"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="搜尋狀態 : 無"
-            android:textColor="@color/colorWhite"
-            android:textSize="15dp" />
-
-    </RelativeLayout>
-
-    <LinearLayout
-        android:id="@+id/line1"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@+id/topBar"
-        android:background="@android:color/darker_gray"
-        android:orientation="horizontal" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/deviceRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/connect_device"
-        android:layout_below="@+id/line1"
-        android:background="@mipmap/black_bg"
-        android:padding="5dp" />
-
-    <LinearLayout
-        android:id="@+id/line2"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_above="@id/connect_device"
-        android:background="@android:color/darker_gray"
-        android:orientation="horizontal" />
-
-    <RelativeLayout
-        android:id="@+id/connect_device"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@android:color/black"
-        >
-
-        <TextView
-            android:id="@+id/search_device"
+        <RelativeLayout
+            android:id="@+id/topBar"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/ripple_effect"
-            android:clickable="true"
-            android:focusable="true"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolBar"
             android:gravity="center"
-            android:text="搜尋裝置"
-            android:textColor="@color/colorWhite"
-            android:textSize="25sp"
-            android:textStyle="bold" />
+            android:minHeight="50dp">
+
+            <TextView
+                android:id="@+id/search_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="搜尋狀態 : 無"
+                android:textColor="@color/colorWhite"
+                android:textSize="15dp" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/line1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/topBar"
+            android:background="@android:color/darker_gray"
+            android:orientation="horizontal" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/deviceRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/connect_device"
+            android:layout_below="@+id/line1"
+            android:padding="5dp" />
+
+
+        <RelativeLayout
+            android:id="@+id/connect_device"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="50dp"
+            >
+
+            <TextView
+                android:id="@+id/search_device"
+                android:layout_width="180dp"
+                android:layout_height="40dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/click_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="搜尋裝置"
+                android:lineSpacingExtra="3dp"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp"
+                 />
+
+        </RelativeLayout>
 
     </RelativeLayout>
 
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="260dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="left"
+        android:theme="@style/myNavigationDrawerStyle"
+        android:background="#e0000000"
+        app:headerLayout="@layout/navigation_header"
+        app:itemTextColor="@color/navigation_menu_item_color"
+        app:menu="@menu/navigation_menu">
 
-</RelativeLayout>
+    </com.google.android.material.navigation.NavigationView>
+
+
+</androidx.drawerlayout.widget.DrawerLayout>

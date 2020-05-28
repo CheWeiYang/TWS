@@ -12,6 +12,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,17 +22,19 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.tws.AboutFragment;
 import com.example.tws.MainActivity;
 import com.example.tws.R;
+import com.example.tws.walkThrough.WalkThroughActivity;
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-
 
 public class BleDeviceFragment extends Fragment {
 
@@ -47,6 +50,8 @@ public class BleDeviceFragment extends Fragment {
     private TextView mStatus;
     private RecyclerView mRecyclerView;
     private Toolbar mToolBar;
+    private DrawerLayout mDrawerLayout;
+    private NavigationView mNavigationView;
     private BleDeviceAdapter mBleDeviceAdapter;
     ArrayList<BleDevice> mBleDevices = new ArrayList<>();
     private BleDevice tempDevice = null;
@@ -82,6 +87,8 @@ public class BleDeviceFragment extends Fragment {
         mStatus = view.findViewById(R.id.search_status);
         mRecyclerView = view.findViewById(R.id.deviceRecyclerView);
         mToolBar = view.findViewById(R.id.toolBar);
+        mDrawerLayout = view.findViewById(R.id.drawerLayout);
+        mNavigationView = view.findViewById(R.id.nav_view);
         initView();
         checkBLEFeature(); //確認手機是否能夠使用BLE設備
     }
@@ -96,8 +103,39 @@ public class BleDeviceFragment extends Fragment {
         mBleDeviceAdapter = new BleDeviceAdapter(mActivity, new ArrayList<BleDevice>());
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false));
         mRecyclerView.setAdapter(mBleDeviceAdapter);
-        mActivity.setSupportActionBar(mToolBar);
-        mActivity.getSupportActionBar().setDisplayShowTitleEnabled(false);
+        mToolBar.setNavigationIcon(R.mipmap.ic_action_edit_songlist);
+        // Navigation Drawer Open
+        mToolBar.setNavigationOnClickListener(v -> mDrawerLayout.openDrawer(Gravity.LEFT));
+
+        mActivity.getResources().getDimension(R.dimen.design_navigation_icon_padding);
+        mNavigationView.getBackground().setAlpha(150);
+
+        mNavigationView.setNavigationItemSelectedListener(menuItem -> {
+            int id = menuItem.getItemId();
+            switch (id) {
+                case R.id.add_tws:
+                    Log.d(TAG, "add_tws");
+                    break;
+                case R.id.setting:
+                    Log.d(TAG, "setting");
+                    break;
+                case R.id.discover:
+                    Log.d(TAG, "discover");
+                    Intent intent = new Intent(getActivity(), WalkThroughActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.about:
+                    Log.d(TAG, "about");
+                    mActivity.getSupportFragmentManager().beginTransaction().
+                            replace(R.id.container, AboutFragment.Companion.newInstance()).
+                            addToBackStack(TAG).
+                            commit();
+                    break;
+                default:
+                    Log.d(TAG, "nothing");
+            }
+            return false;
+        });
 
         /**
          * 點選RecyclerView裡面的item
@@ -127,8 +165,9 @@ public class BleDeviceFragment extends Fragment {
         if (mScanning) {
             updateScanStatus(false);
         }
+
         mActivity.getSupportFragmentManager().beginTransaction().
-                //setCustomAnimations(R.anim.out_left, R.anim.out_right).
+                //setCustomAnimations(R.anim.from_right, R.anim.out_left).
                 hide(BleDeviceFragment.this).add(R.id.container, DeviceInfoFragment.newInstance(device)).
                 addToBackStack(null).
                 commit();
@@ -152,20 +191,20 @@ public class BleDeviceFragment extends Fragment {
         }
     }
 
-    private void getPairDevice() {
-        Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
-        if (pairedDevices.size() > 0) {
-            // There are paired devices. Get the name and address of each paired device.
-            for (BluetoothDevice device : pairedDevices) {
-                Log.d(TAG, "Find Pair Device");
-                mBluetoothDevice = device;
-                if (!isContainDevices(tempDevice)) {
-                    mBleDevices.add(tempDevice);
-                    mBleDeviceAdapter.refreshDevice(mBleDevices);
-                }
-            }
-        }
-    }
+//    private void getPairDevice() {
+//        Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
+//        if (pairedDevices.size() > 0) {
+//            // There are paired devices. Get the name and address of each paired device.
+//            for (BluetoothDevice device : pairedDevices) {
+//                Log.d(TAG, "Find Pair Device");
+//                mBluetoothDevice = device;
+//                if (!isContainDevices(tempDevice)) {
+//                    mBleDevices.add(tempDevice);
+//                    mBleDeviceAdapter.refreshDevice(mBleDevices);
+//                }
+//            }
+//        }
+//    }
 
     private void scanLeDevice(final boolean enable) {
         mBluetoothLeScanner = mBluetoothAdapter.getBluetoothLeScanner();

@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">TWS Sample</string>
     <string name="location_auth">位置權限</string>
     <string name="auth_message">應用程式有權獲取您的位置時才能接收耳機的狀態。</string>
@@ -15,4 +15,10 @@
     <string name="headphone_power_l">耳機電量(L) : </string>
     <string name="headphone_power_r">耳機電量(R) : </string>
     <string name="unknown">未知</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
+    <string name="current_version">版本 :　%s</string>
+    <string name="copyright">Copyright © 2020 Foxconn 鴻海科技集團</string>
+    <string name="aboutDesc1">讓TWS做你聽音樂的耳朵</string>
+    <string name="aboutDesc2">跟著我們一起進入音樂的世界，轉念之間，一切都會變得不一樣！為展現品牌獨特個性與活力，TWS耳機為「Foxconn」推出的第一款耳機，經典的設計，將音樂自由的精神注入品牌靈魂，同時傳導至音樂愛好者的耳朵。</string>
 </resources>

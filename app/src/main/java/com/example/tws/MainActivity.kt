@@ -47,15 +47,15 @@ class MainActivity : AppCompatActivity() {
                         0 -> {
                             //表示已給予權限
                             supportFragmentManager.beginTransaction()
-                                //.setCustomAnimations(R.anim.from_right,R.anim.out_left) 滑動動畫，先關閉
-                                .replace(R.id.container, BleDeviceFragment())
+                                .setCustomAnimations(R.anim.from_right,R.anim.out_left)
+                                .add(R.id.container, BleDeviceFragment())
                                 .commit()
                         }
                         -1 -> {
                             //還未給予權限
                             supportFragmentManager.beginTransaction()
                                 .replace(R.id.container, MainFragment.newInstance())
-                                .commitNow()
+                                .commit()
                         }
                     }
                 }

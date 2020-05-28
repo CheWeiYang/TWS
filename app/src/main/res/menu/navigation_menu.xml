@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
+        <item
+            android:id="@+id/add_tws"
+            android:title="加入新的 Tws" />
+        <item
+            android:id="@+id/setting"
+            android:title="App 設定" />
+        <item
+            android:id="@+id/discover"
+            android:title="探索 Tws" />
+        <item
+            android:id="@+id/about"
+            android:title="關於我們" />
+    </group>
+
+</menu>
